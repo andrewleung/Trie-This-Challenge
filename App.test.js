@@ -15,22 +15,22 @@ it('adds and finds items from trie-search component', () => {
   app.add('orange');
   app.add('grape');
   app.add('cherry');
-  expect(app.search('a')).toHaveLength(0);
+  expect(app.search('a')).toHaveLength(1);
   expect(app.search('ap')).toHaveLength(1);
   expect(app.search('app')).toHaveLength(1);
   expect(app.search('appl')).toHaveLength(1);
   expect(app.search('apple')).toHaveLength(1);
   expect(app.search('ap')[0].label).toEqual('apple');
   app.add('apple pie', 6);
-  expect(app.search('a')).toHaveLength(0);
+  expect(app.search('a')).toHaveLength(2);
   expect(app.search('ap')).toHaveLength(2);
   expect(app.search('app')).toHaveLength(2);
   expect(app.search('appl')).toHaveLength(2);
   expect(app.search('apple')).toHaveLength(2);
-  expect(app.search('apple ')[0].label).toEqual('apple');
-  expect(app.search('apple p')[0].label).toEqual('apple');
-  expect(app.search('apple pi')).toHaveLength(0);
-  expect(app.search('apple pie')).toHaveLength(0);
+  expect(app.search('apple ')).toHaveLength(1);
+  expect(app.search('apple p')).toHaveLength(1);
+  expect(app.search('apple pi')).toHaveLength(1);
+  expect(app.search('apple pie')).toHaveLength(1);
 });
 
 it('renders autocomplete child component, which finds and adds items via the trie-search component', () => {
@@ -41,22 +41,22 @@ it('renders autocomplete child component, which finds and adds items via the tri
   trie.props.add('orange');
   trie.props.add('grape');
   trie.props.add('cherry');
-  expect(trie.props.currentMatches('a')).toHaveLength(0);
+  expect(trie.props.currentMatches('a')).toHaveLength(1);
   expect(trie.props.currentMatches('ap')).toHaveLength(1);
   expect(trie.props.currentMatches('app')).toHaveLength(1);
   expect(trie.props.currentMatches('appl')).toHaveLength(1);
   expect(trie.props.currentMatches('apple')).toHaveLength(1);
   expect(trie.props.currentMatches('ap')[0].label).toEqual('apple');
   trie.props.add('apple pie', 6);
-  expect(trie.props.currentMatches('a')).toHaveLength(0);
+  expect(trie.props.currentMatches('a')).toHaveLength(2);
   expect(trie.props.currentMatches('ap')).toHaveLength(2);
   expect(trie.props.currentMatches('app')).toHaveLength(2);
   expect(trie.props.currentMatches('appl')).toHaveLength(2);
   expect(trie.props.currentMatches('apple')).toHaveLength(2);
-  expect(trie.props.currentMatches('apple ')[0].label).toEqual('apple');
-  expect(trie.props.currentMatches('apple p')[0].label).toEqual('apple');
-  expect(trie.props.currentMatches('apple pi')).toHaveLength(0);
-  expect(trie.props.currentMatches('apple pie')).toHaveLength(0);
+  expect(trie.props.currentMatches('apple ')).toHaveLength(1);
+  expect(trie.props.currentMatches('apple p')).toHaveLength(1);
+  expect(trie.props.currentMatches('apple pi')).toHaveLength(1);
+  expect(trie.props.currentMatches('apple pie')).toHaveLength(1);
 });
 
 it('renders an input box with a default value initialized to match the 1st item on the list', () => {
